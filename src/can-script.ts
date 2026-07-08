@@ -4,10 +4,12 @@ import { type effectDTO, effect } from "./types/effect.types";
 let timeline = gsap.timeline();
 
 function playSound(audioId: string) {
-    console.log(audioId, ' start');
-    const element = (document.getElementById(audioId)! as HTMLAudioElement);
-    element.currentTime = 0;
-    element.play()
+    timeline.call(() => {
+        console.log(audioId, ' start');
+        const element = (document.getElementById(audioId)! as HTMLAudioElement);
+        element.currentTime = 0;
+        element.play()
+    });
 }
 
 function changeEyes(eyesType: string = "standard") {
@@ -23,8 +25,8 @@ function changeEyes(eyesType: string = "standard") {
 }
 
 function aww(clockwise: boolean = false) {
+    playSound("audio-aww");
     timeline
-        .call(() => playSound("audio-aww"))
         .to(".rect", {
             rotation: clockwise ? 45 : -45,
             duration: 2
@@ -60,10 +62,7 @@ function laugh(long: boolean = true) {
 const animations = {
     "applause": () => {
         changeEyes("standard");
-
-        timeline.call(() => {
-            playSound('audio-applause');
-        });
+        playSound('audio-applause');
         // Repeat this 10 times:
         for (let i = 0; i < 12; i++) {
             timeline
@@ -109,9 +108,7 @@ const animations = {
 
     "crickets": () => {
         changeEyes("crickets");
-        timeline.call(() => {
-            playSound('audio-crickets');
-        })
+        playSound('audio-crickets');
 
         // Repeat 6 times
         for (let i = 0; i < 5; i++) {
@@ -138,9 +135,9 @@ const animations = {
 
     "gasp": () => {
         changeEyes("shocked");
+        playSound("audio-gasp")
 
         timeline
-            .call(() => playSound("audio-gasp"))
             .to(".rect", {
                 rotation: 60,
                 marginTop: 100,
@@ -162,31 +159,20 @@ const animations = {
     },
 
     "laughter": () => {
-
-        timeline.call(() => {
-            playSound('audio-laughter');
-        });
-
+        playSound('audio-laughter');
         laugh();
     },
 
     "laughter-s": () => {
-
-        timeline.call(() => {
-            playSound('audio-laughter-s');
-        });
-
+        playSound('audio-laughter-s');
         laugh(false);
     },
 
     "mumbling": () => {
         changeEyes("mumbling");
+        playSound('audio-mumbling');
 
-        timeline.call(() => {
-            playSound('audio-mumbling');
-        });
-
-        // Repeat this 10 times:
+        // Repeat this 12 times:
         for (let i = 0; i < 12; i++) {
             timeline
                 .to(".rect", {
