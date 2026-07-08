@@ -3,13 +3,14 @@
     // Environment setup & latest features
     "lib": [
       "ESNext",
-      "DOM"
+      "DOM",
     ],
     "target": "ESNext",
     "module": "Preserve",
     "moduleDetection": "force",
     "jsx": "react-jsx",
     "allowJs": true,
+    "resolveJsonModule": true,
     "types": [
       "bun"
     ],
