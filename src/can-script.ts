@@ -24,6 +24,24 @@ function changeEyes(eyesType: string = "standard") {
         })
 }
 
+function blink() {
+    changeEyes("standard");
+
+    timeline
+        .to('[data-category="standard"]', {
+            transform: "scaleY(.0)",
+            duration: .1
+        })
+        .to('[data-category="standard"]', {
+            transform: "scaleY(1.3)",
+            duration: .05
+        })
+        .to('[data-category="standard"]', {
+            transform: "scaleY(1)",
+            duration: .2
+        })
+}
+
 function aww(clockwise: boolean = false) {
     playSound("audio-aww");
     timeline
@@ -55,8 +73,6 @@ function laugh(long: boolean = true) {
                 duration: .07
             })
     }
-
-    changeEyes("standard");
 }
 
 const animations = {
@@ -80,13 +96,11 @@ const animations = {
     "aww-h": () => {
         changeEyes("hearts");
         aww(true);
-        changeEyes("standard")
     },
 
     "aww-s": () => {
         changeEyes("sad");
         aww();
-        changeEyes("standard")
     },
 
     "boo": () => {
@@ -103,7 +117,6 @@ const animations = {
                     duration: .1
                 }
             )
-        changeEyes("standard");
     },
 
     "crickets": () => {
@@ -115,6 +128,7 @@ const animations = {
             timeline
                 .to(".rect", {
                     rotate: -45,
+                    marginTop: 75,
                     duration: .2,
                 })
                 .to(".rect", {
@@ -127,10 +141,10 @@ const animations = {
         timeline
             .to(".rect", {
                 rotate: 0,
+                marginTop: 0,
                 duration: .2,
                 delay: .2,
             })
-        changeEyes("standard");
     },
 
     "gasp": () => {
@@ -154,8 +168,6 @@ const animations = {
                 marginLeft: 200,
                 duration: .5
             })
-
-        changeEyes('standard');
     },
 
     "laughter": () => {
@@ -184,8 +196,6 @@ const animations = {
                     duration: .1
                 })
         }
-
-        changeEyes("standard");
     },
 }
 
@@ -207,8 +217,16 @@ wsConnection.addEventListener("message", (evt => {
     try {
         const effectStr = effect.parse(data.effect);
         animations[effectStr]();
+
+        // Change the eyes back to standard and blink once the animation is done
+        blink();
     }
     catch (e) {
         console.error("An effect that doesn't exist attempted to be used!", e);
     }
 }));
+
+// Blink routine
+setInterval(() => {
+    blink();
+}, 30000)
