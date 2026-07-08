@@ -69,6 +69,7 @@ function isSpamming(user: string, id: string, ws: WebSocket, isHelpCmd: boolean 
 }
 
 const server = Bun.serve({
+    port: 9012,
     routes: {
         "/": page,
 
