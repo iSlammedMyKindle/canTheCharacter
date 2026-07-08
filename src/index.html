@@ -5,22 +5,44 @@
     <style>
         .rect {
             height: 800px;
+            width: 616px;
+            /* absolute positioning because the anchor point becomes the center, instead of the top-left corner */
+            position: absolute;
+            margin-left: 200px;
+            margin-top: 50px;
         }
 
         .eyes {
-            position: absolute
+            position: absolute;
+            display: none;
         }
     </style>
 </head>
 
 <body>
     <div class="rect">
-        <img class="eyes" src="../static/img/eyesStandard.png" />
-        <img src="../static/img/can.png" />
+        <div class="can-container">
+            <img class="eyes" data-category="standard" style="display: block;" src="../static/img/eyesStandard.png" />
+            <img class="eyes" data-category="crickets" src="../static/img/eyesCrickets.png" />
+            <img class="eyes" data-category="angry" src="../static/img/eyesAngry.png" />
+            <img class="eyes" data-category="mumbling" src="../static/img/eyesMumbling.png" />
+            <img class="eyes" data-category="hearts" src="../static/img/eyesHearts.png" />
+            <img class="eyes" data-category="sad" src="../static/img/eyesSad.png" />
+            <img class="eyes" data-category="shocked" src="../static/img/eyesShocked.png" />
+            <img class="eyes" data-category="laugh" src="../static/img/eyesLaugh.png" />
+            <img src="../static/img/can.png" />
+        </div>
     </div>
 
     <!-- Audio Sources -->
     <audio id="audio-applause" src="../static/audio/applause.mp3"></audio>
+    <audio id="audio-crickets" src="../static/audio/crickets.mp3"></audio>
+    <audio id="audio-boo" src="../static/audio/boo.mp3"></audio>
+    <audio id="audio-mumbling" src="../static/audio/mumbling.mp3"></audio>
+    <audio id="audio-laughter" src="../static/audio/laughter.mp3"></audio>
+    <audio id="audio-laughter-s" src="../static/audio/laughter-s.mp3"></audio>
+    <audio id="audio-aww" src="../static/audio/aww.mp3"></audio>
+    <audio id="audio-gasp" src="../static/audio/gasp.mp3"></audio>
 
     <!-- The script that makes can go brr -->
     <script type="module" src="./can-script.ts"></script>
