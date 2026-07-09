@@ -170,13 +170,13 @@ const animations = {
             })
     },
 
-    "laughter": () => {
-        playSound('audio-laughter');
+    "laugh": () => {
+        playSound('audio-laugh');
         laugh();
     },
 
-    "laughter-s": () => {
-        playSound('audio-laughter-s');
+    "laugh-s": () => {
+        playSound('audio-laugh-s');
         laugh(false);
     },
 
