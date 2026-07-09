@@ -180,6 +180,11 @@ const animations = {
         laugh(false);
     },
 
+    "lol": () => {
+        playSound('audio-laugh-s');
+        laugh(false);
+    },
+
     "mumbling": () => {
         changeEyes("mumbling");
         playSound('audio-mumbling');
