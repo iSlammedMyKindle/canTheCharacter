@@ -1,0 +1,13 @@
+[Unit]
+Description=Anthropomorphic Twitch Soundboard
+After=network.target
+
+[Service]
+Type=notify
+WorkingDirectory=/path/to/canTheCharacter
+ExecStart=/usr/bin/bun index.ts
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
