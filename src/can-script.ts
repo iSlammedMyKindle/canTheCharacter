@@ -204,7 +204,7 @@ const animations = {
     },
 }
 
-const wsConnection = new WebSocket("ws://localhost:9011");
+const wsConnection = new WebSocket("ws://localhost:9014");
 wsConnection.addEventListener("message", (evt => {
     let data: effectDTO;
     console.log(evt.data);
